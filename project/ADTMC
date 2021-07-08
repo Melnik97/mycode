@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+# A program to lead you through ADTMC protocol. Patient treatment/instuction will be printed to your screen.
+
+#Misc stuff used
+
+# Starting menu
+def Complaint_Menu():
+       
+    Menu=["Sore Throat", "Ear Pain/Discomfort/Drainage"]
+    Counter = 0
+
+    for Option in Menu:
+        Counter += 1
+        print(f"{Counter}: {Option} ")
+
+    
+
+
+Complaint_Menu()
+
+
