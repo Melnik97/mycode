@@ -4,19 +4,112 @@
 
 #Misc stuff used
 
-# Starting menu
+CAT1= 'CAT I: A medical problem exists which may be life threatening (an emergency) requiring the immediate attention of a physician. First aid should be initiated, and ambulance transportation called for if physician is not immediately available. The scope of practice of a TMC or BAS is normally inadequate for these patients.  the goal is to care for these patients in a facility (usually an emergency center) capable of providing advanced cardiac and trauma life support.'
+
+CAT2= 'CAT II: A medical problem exists which may develop into a life-threatening emergency if not evaluated on a priority basis by a physician, PA, or other qualified provider.'
+
+CAT3= 'CAT III: A medical condition exists which requires PA evaluation. Finding will be recorded on DA Form 5181. Data may be obtained by an ADTMC screener, but the medical officer will ultimately make the disposition.'
+
+CAT4= 'CAT IV: A health condition exists for which self-care is appropriate. The instructions and medications to be offered the patient are contained within the body of the protocol. EITHER THE PATIENT OR SCREEENER MAY ELECT TO OVERRULE THIS RECOMMENDATION OF SELF CARE.'
+
+CAT5= 'CAT V: A medical condition exists which will be appropriately evaluated in a specialty or subspecialty clinic. Consultation with either the PA or the supervising physician is required. When an appointment is not available within the time frame specified by the algorithm, the patient will be referred to Level III, PA TODAY.'
+
+Dispostion=''
+
+#Sorethroat Algorithm flowchart.
+def Sore_Throat():
+    
+    ScreenerQuestions= {
+    "1":{
+        "question": "Is there a history of recent throat or neck trauma?",
+        "yes": "2",
+        "no":"3" },
+    
+    "2":{
+        "question": "Does the patient have difficulty speaking or swallowing?",
+        "yes": "CAT1",
+        "no": "4" },
+    
+    "3":{
+        "question": "Can the patient touch his chin to his chest?",
+        "yes": "5",
+        "no": "4" },
+
+    "4":{
+        "question": "Is patients temperature 100°F or higher or is the patient unable to swallow? determine ablility to swallow by oberving the patient",
+        "yes": "CAT1",
+        "no": "CAT3" },
+
+    "5":{
+        "question": "Does the patient have Asymmetric tonsils?",
+        "yes": "CAT2",
+        "no": "5.5" },
+
+    "5.5":{
+        "question": "Does the patient have a temperature of 101°F or higher, pus on tonsils, or swollen tonsils?",
+        "yes": "CAT3",
+        "no": "6 " },
+   
+    "6":{
+        "question": "Can the patient clear both his ears?",
+        "yes": "CAT4",
+        "no": "Ear_Pain/Discomfort/Drainage()"},
+    
+    "CAT1":{"question": "prints CAT1 "},
+    "CAT2":{"question": "prints CAT2 "},
+    "CAT3":{"question": "prints CAT3 "},
+    "CAT4":{"question": "prints CAT4 "},
+    "CAT5":{"question": "prints CAT5 "},
+    "Ear_Pain/Discomfort/Drainage()":{"question ": "prints Ear_Pain/Discomfort/Drainage()"}
+
+    
+    
+    
+    }    
+
+    
+    start= "1"
+
+    while start != "CAT1":
+        print(ScreenerQuestions[start]["question"])
+        answer= input(">").lower().strip()
+        if answer in ["yes","no"]:
+            start = ScreenerQuestions[start][answer]
+        else:
+            print("Please choose yes or no.")
+
+    print(start)
+
+
+
+# Starting menu. User chooses flow Sheet to run.
 def Complaint_Menu():
-       
-    Menu=["Sore Throat", "Ear Pain/Discomfort/Drainage"]
+    
+    print('ADTMC Algorithm Menu\n ')
+    Menu=["Sore Throat", "Ear Pain/Discomfort/Drainage", "Cough"]
     Counter = 0
 
     for Option in Menu:
         Counter += 1
         print(f"{Counter}: {Option} ")
-
     
+    MenuInput = input('\nPlease select Cheif Complaint patients vist by typing the number beside it: ')
+    
+    if MenuInput == '1':
+        MenuChoice= Sore_Throat()
+    
+    elif MenuInput == '2':
+        MenuChoice= Ear_Pain/Discomfort/Drainage()
+
+    elif MenuInput == '3':
+        MenuChoice= Cough()
+
+    else:
+        MenuChoice= 'Invalid Input.'
+
+
+    print(MenuChoice)
+
 
 
 Complaint_Menu()
-
-
