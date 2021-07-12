@@ -54,23 +54,12 @@ def Sore_Throat():
         "question": "Can the patient clear both his ears?",
         "yes": "CAT4",
         "no": "Ear_Pain/Discomfort/Drainage()"},
-    
-    "CAT1":{"question": "prints CAT1 "},
-    "CAT2":{"question": "prints CAT2 "},
-    "CAT3":{"question": "prints CAT3 "},
-    "CAT4":{"question": "prints CAT4 "},
-    "CAT5":{"question": "prints CAT5 "},
-    "Ear_Pain/Discomfort/Drainage()":{"question ": "prints Ear_Pain/Discomfort/Drainage()"}
-
-    
-    
-    
     }    
 
     
     start= "1"
 
-    while start != "CAT1":
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5" or start == "Ear_Pain/Discomfort/Drainage()"):
         print(ScreenerQuestions[start]["question"])
         answer= input(">").lower().strip()
         if answer in ["yes","no"]:
@@ -78,8 +67,21 @@ def Sore_Throat():
         else:
             print("Please choose yes or no.")
 
-    print(start)
+    if start == "CAT1":
+        print(f'\n\nPatient Category:\n\n{CAT1}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT2":
+        print(f'\n\nPatient Category:\n\n{CAT2}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT3":
+        print(f'\n\nPatient Category:\n\n{CAT3}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT4":
+        print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT5":
+        print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
+    elif start =="Ear_Pain/Discomfort/Drainage()":
+        Ear_Pain/Discomfort/Drainage()
 
+    else:
+        print("Something is broken :/")
 
 
 # Starting menu. User chooses flow Sheet to run.
