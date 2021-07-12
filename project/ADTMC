@@ -10,7 +10,7 @@ CAT2= 'CAT II: A medical problem exists which may develop into a life-threatenin
 
 CAT3= 'CAT III: A medical condition exists which requires PA evaluation. Finding will be recorded on DA Form 5181. Data may be obtained by an ADTMC screener, but the medical officer will ultimately make the disposition.'
 
-CAT4= 'CAT IV: A health condition exists for which self-care is appropriate. The instructions and medications to be offered the patient are contained within the body of the protocol. EITHER THE PATIENT OR SCREEENER MAY ELECT TO OVERRULE THIS RECOMMENDATION OF SELF CARE.'
+CAT4= 'CAT IV: A health condition exists for which self-care is appropriate. The instructions and medications to be offered the patient are contained in Self-Care Check out Form. EITHER THE PATIENT OR SCREEENER MAY ELECT TO OVERRULE THIS RECOMMENDATION OF SELF CARE. If recommendation is overruled proceed as CAT III.'
 
 CAT5= 'CAT V: A medical condition exists which will be appropriately evaluated in a specialty or subspecialty clinic. Consultation with either the PA or the supervising physician is required. When an appointment is not available within the time frame specified by the algorithm, the patient will be referred to Level III, PA TODAY.'
 
@@ -48,18 +48,18 @@ def Sore_Throat():
     "5.5":{
         "question": "Does the patient have a temperature of 101°F or higher, pus on tonsils, or swollen tonsils?",
         "yes": "CAT3",
-        "no": "6 " },
+        "no": "6" },
    
     "6":{
         "question": "Can the patient clear both his ears?",
         "yes": "CAT4",
-        "no": "Ear_Pain/Discomfort/Drainage()"},
+        "no": "Ear_Pain_Discomfort_Drainage()"},
     }    
 
     
     start= "1"
 
-    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5" or start == "Ear_Pain/Discomfort/Drainage()"):
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5" or start == "Ear_Pain_Discomfort_Drainage()"):
         print(ScreenerQuestions[start]["question"])
         answer= input(">").lower().strip()
         if answer in ["yes","no"]:
@@ -77,8 +77,112 @@ def Sore_Throat():
         print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
     elif start =="CAT5":
         print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
-    elif start =="Ear_Pain/Discomfort/Drainage()":
-        Ear_Pain/Discomfort/Drainage()
+    elif start =="Ear_Pain_Discomfort_Drainage()":
+        Ear_Pain_Discomfort_Drainage()
+
+    else:
+        print("Something is broken :/")
+
+
+def Ear_Pain_Discomfort_Drainage():
+
+    ScreenerQuestions= {
+    "1":{
+        "question": "Can the patient touch his chin to his chest?",
+        "yes": "3a",
+        "no":"2" },
+
+    "2":{
+        "question": "Is the patients temperature 100°F or higher or does the patient have a stiff neck?",
+        "yes": "CAT2",
+        "no": "3b" },
+
+    "3a":{
+        "question": "Does the Patient have vertigo?",
+        "yes": "CAT2",
+        "no": "4" },
+
+    "3b":{
+        "question": "Does the Patient have vertigo?",
+        "yes": "CAT2",
+        "no": "CAT3" },
+
+    "4":{
+        "question": "Is the patients temperature 101°F or higer? Do they have decreased hearing and pain? Do they have discomfort with vertigo?",
+        "yes": "CAT3",
+        "no": "5" },
+
+    "5":{
+        "question": "Are the symptoms associated with cold/flu symptoms?",
+        "yes": "CAT4",
+        "no": "CAT3" },
+    }
+
+
+    start= "1"
+
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5"):
+        print(ScreenerQuestions[start]["question"])
+        answer= input(">").lower().strip()
+        if answer in ["yes","no"]:
+            start = ScreenerQuestions[start][answer]
+        else:
+            print("Please choose yes or no.")
+
+    if start == "CAT1":
+        print(f'\n\nPatient Category:\n\n{CAT1}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT2":
+        print(f'\n\nPatient Category:\n\n{CAT2}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT3":
+        print(f'\n\nPatient Category:\n\n{CAT3}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT4":
+        print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT5":
+        print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
+
+    else:print("Something is broken :/")
+
+
+def Cough():
+
+    ScreenerQuestions= {
+    "1":{
+        "question": "Is the patient short of breath while at rest? (determine the answer by observing the patient.)",
+        "yes": "CAT2",
+        "no":"2" },
+
+    "2":{
+        "question": "Is the patient coughing up rusty or blood-streaked sputum or sputum with every cough?",
+        "yes": "CAT3",
+        "no": "3" },
+
+    "3":{
+        "question": "Is the patients temperature 101°F or greater?",
+        "yes": "CAT3",
+        "no": "CAT4" },
+    }
+
+
+    start= "1"
+
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5"):
+        print(ScreenerQuestions[start]["question"])
+        answer= input(">").lower().strip()
+        if answer in ["yes","no"]:
+            start = ScreenerQuestions[start][answer]
+        else:
+            print("Please choose yes or no.")
+
+    if start == "CAT1":
+        print(f'\n\nPatient Category:\n\n{CAT1}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT2":
+        print(f'\n\nPatient Category:\n\n{CAT2}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT3":
+        print(f'\n\nPatient Category:\n\n{CAT3}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT4":
+        print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT5":
+        print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
 
     else:
         print("Something is broken :/")
@@ -95,13 +199,13 @@ def Complaint_Menu():
         Counter += 1
         print(f"{Counter}: {Option} ")
     
-    MenuInput = input('\nPlease select Cheif Complaint patients vist by typing the number beside it: ')
+    MenuInput = input('\nPlease select the Cheif Complaint for the patients visit by typing the number beside it: ')
     
     if MenuInput == '1':
         MenuChoice= Sore_Throat()
     
     elif MenuInput == '2':
-        MenuChoice= Ear_Pain/Discomfort/Drainage()
+        MenuChoice= Ear_Pain_Discomfort_Drainage()
 
     elif MenuInput == '3':
         MenuChoice= Cough()
