@@ -188,11 +188,99 @@ def Cough():
         print("Something is broken :/")
 
 
+def Sinus_Problems_Pain():
+
+    ScreenerQuestions= {
+    "1":{
+        "question": "Can the Patient touch his chin to his chest?",
+        "yes": "3",
+        "no":"2" },
+
+    "2":{
+        "question": "Is the patients temperature greater than 100°F?",
+        "yes": "CAT2",
+        "no": "CAT3" },
+
+    "3":{
+        "question": "Is the patient having difficulty answering simple questions or are they disoriented?",
+        "yes": "CAT2",
+        "no": "4" },
+
+    "4":{
+        "question": "Is the patients temperature 101°F or higher?",
+        "yes": "CAT3",
+        "no": "5" },
+
+    "5":{
+        "question": "Does the patient have a rusty, yellow/green colorted, or foul-smelling nasal discharge?",
+        "yes": "CAT3",
+        "no": "CAT4" },
+    }
+
+
+    start= "1"
+
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5"):
+        print(ScreenerQuestions[start]["question"])
+        answer= input(">").lower().strip()
+        if answer in ["yes","no"]:
+            start = ScreenerQuestions[start][answer]
+        else:
+            print("Please choose yes or no.")
+
+    if start == "CAT1":
+        print(f'\n\nPatient Category:\n\n{CAT1}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT2":
+        print(f'\n\nPatient Category:\n\n{CAT2}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT3":
+        print(f'\n\nPatient Category:\n\n{CAT3}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT4":
+        print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT5":
+        print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
+
+    else:
+        print("Something is broken :/")
+
+
+def Runny_Stuffy_Nose():
+
+    ScreenerQuestions= {
+    "1":{
+        "question": "Does the patient have rust yellow/greenish, or foul-smelling nasal discharge? (Observe the discharge; do not use the patient's interpretation alone.)?",
+        "yes": "CAT3",
+        "no":"CAT4" }}
+
+    start= "1"
+
+    while not (start == "CAT1" or start == "CAT2" or start == "CAT3" or start == "CAT4" or start == "CAT5"):
+        print(ScreenerQuestions[start]["question"])
+        answer= input(">").lower().strip()
+        if answer in ["yes","no"]:
+            start = ScreenerQuestions[start][answer]
+        else:
+            print("Please choose yes or no.")
+
+    if start == "CAT1":
+        print(f'\n\nPatient Category:\n\n{CAT1}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT2":
+        print(f'\n\nPatient Category:\n\n{CAT2}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT3":
+        print(f'\n\nPatient Category:\n\n{CAT3}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT4":
+        print(f'\n\nPatient Category:\n\n{CAT4}\n\nRoute patient to appropriate triage location.')
+    elif start =="CAT5":
+        print(f'\n\nPatient Category:\n\n{CAT5}\n\nRoute patient to appropriate triage location.')
+
+    else:
+        print("Something is broken :/")
+
+
 # Starting menu. User chooses flow Sheet to run.
 def Complaint_Menu():
     
     print('ADTMC Algorithm Menu\n ')
-    Menu=["Sore Throat", "Ear Pain/Discomfort/Drainage", "Cough"]
+    Menu=["Sore Throat", "Ear Pain/Discomfort/Drainage", "Cough", "Sinus Problems/Pain", "Runny/Stuffy Nose"]
     Counter = 0
 
     for Option in Menu:
@@ -209,6 +297,12 @@ def Complaint_Menu():
 
     elif MenuInput == '3':
         MenuChoice= Cough()
+    
+    elif MenuInput == '4':
+        MenuChoice= Sinus_Problems_Pain()
+
+    elif MenuInput == '5':
+        MenuChoice= Runny_Stuffy_Nose()
 
     else:
         MenuChoice= 'Invalid Input.'
